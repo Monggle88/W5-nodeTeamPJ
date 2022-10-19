@@ -20,7 +20,7 @@ const router = express.Router();
 // 예시 코드
 router.get('/', authMiddleware, (req, res, next) => {
     try {
-        const { nickname } = res.locals.user;
+        const nickname = res.locals.user;
 
         const value = true;
         if (value !== true) {

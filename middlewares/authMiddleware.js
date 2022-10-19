@@ -18,12 +18,9 @@ module.exports = async (req, res, next) => {
                 errorMessage: '전달된 쿠키에서 오류가 발생하였습니다.',
             });
         }
+        const { nickname } = jwt.verify(tokenValue, process.env.JWT_SECRET_KET);
 
-        console.log(`authmiddle tokenvalue: ${tokenValue}`);
-        const { nickname } = jwt.verify(tokenValue, process.env.SECRET_KEY);
-        const user = await usersRepository.findUser(nickname);
-
-        res.locals.user = user;
+        res.locals.user = nickname;
         next();
     } catch (error) {
         res.locals.user = { userId: undefined };
