@@ -1,7 +1,7 @@
 const { Users } = require('../models');
 const { Op } = require('sequelize');
 
-class usersRepository {
+class UsersRepository {
     constructor() {}
 
     findUser = async (nickname) => {
@@ -24,4 +24,4 @@ class usersRepository {
     };
 }
 
-module.exports = usersRepository;
+module.exports = UsersRepository;

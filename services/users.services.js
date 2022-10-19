@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const usersRepository = require('../repositories/users.repositories');
+const UsersRepository = require('../repositories/users.repositories');
 const { ValidationError } = require('../exceptions/index.exception');
 
-class usersService {
+class UsersService {
     constructor() {
-        this.usersRepository = new usersRepository();
+        this.usersRepository = new UsersRepository();
     }
 
     // 회원 가입
@@ -79,4 +79,4 @@ class usersService {
     loginValidation = async (nickname) => {};
 }
 
-module.exports = usersService;
+module.exports = UsersService;

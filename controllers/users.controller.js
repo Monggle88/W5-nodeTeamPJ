@@ -1,10 +1,10 @@
 const Joi = require('joi');
 require('dotenv').config();
-const usersService = require('../services/users.services');
+const UsersService = require('../services/users.services');
 
-class usersController {
+class UsersController {
     constructor() {
-        this.usersService = new usersService();
+        this.usersService = new UsersService();
     }
 
     /**
@@ -74,4 +74,4 @@ class usersController {
     };
 }
 
-module.exports = usersController;
+module.exports = UsersController;
