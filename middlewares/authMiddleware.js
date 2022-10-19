@@ -19,6 +19,7 @@ module.exports = async (req, res, next) => {
             });
         }
 
+        console.log(`authmiddle tokenvalue: ${tokenValue}`);
         const { nickname } = jwt.verify(tokenValue, process.env.SECRET_KEY);
         const user = await usersRepository.findUser(nickname);
 

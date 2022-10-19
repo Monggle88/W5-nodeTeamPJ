@@ -46,9 +46,7 @@ class UsersService {
         // password 일치여부 확인
         const isValidPassword = await bcrypt.compare(password, user.password);
         if (!isValidPassword) {
-            return res
-                .status(401)
-                .json({ message: 'nickname 혹은 password를 확인해주세요.' });
+            throw new ValidationError('nickname 혹은 password를 확인해주세요.');
         }
 
         return user;

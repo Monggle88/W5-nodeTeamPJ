@@ -11,7 +11,7 @@ class UsersController {
      * @param {import("express").request} req - express Request
      * @param {import("express").response} res - express Response
      * **/
-    login = async (req, res) => {
+    login = async (req, res, next) => {
         try {
             // body data 객체분해할당
             const { nickname, password } = req.body;
@@ -32,10 +32,7 @@ class UsersController {
                 token: `${token}`,
             });
         } catch (error) {
-            // Error
-            console.error(error);
-            res.status(error.status || 400);
-            res.json({ errorMessage: error.message });
+            next(error);
         }
     };
 
@@ -43,7 +40,7 @@ class UsersController {
      * @param {import("express").request} req - express Request
      * @param {import("express").response} res - express Response
      * **/
-    createUser = async (req, res) => {
+    createUser = async (req, res, next) => {
         try {
             // 유효성 검사용 스키마
             const usersSchema = Joi.object({
@@ -66,10 +63,7 @@ class UsersController {
                 msg: `${nickname}님, 회원가입을 축하드립니다!`,
             });
         } catch (error) {
-            // Error
-            console.error(error);
-            res.status(error.status || 400);
-            res.json({ errorMessage: error.message });
+            next(error);
         }
     };
 }
