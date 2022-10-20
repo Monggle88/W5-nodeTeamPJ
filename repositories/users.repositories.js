@@ -7,7 +7,7 @@ class UsersRepository {
     findUser = async (nickname) => {
         const user = await Users.findOne({
             where: {
-                nickname: nickname,
+                nickname,
             },
         });
 
