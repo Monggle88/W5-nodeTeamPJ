@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 class UsersRepository {
     constructor() {}
 
-    findUser = async (nickname) => {
+    findUserByNickname = async (nickname) => {
         const user = await Users.findOne({
             where: {
                 nickname,
