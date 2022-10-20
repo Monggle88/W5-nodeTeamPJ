@@ -15,21 +15,21 @@ class PostsService {
     };
 
     //게시글 생성
-    createPost = async ({ userId, title, content, like }) => {
+    createPost = async ({ userId, title, contents, like }) => {
         const newPost = await this.PostsRepository.createPost({
             userId,
             title,
-            content,
+            contents,
             like,
         });
         return newPost;
     };
 
     //게시글 수정
-    putPost = async ({ postId, title, content }) => {
+    putPost = async ({ postId, title, contents }) => {
         const Posts = await this.PostsRepository.putPost({
             title,
-            content,
+            contents,
             postId,
         });
         return Posts;
@@ -55,7 +55,6 @@ class PostsService {
 
     //좋아요
     putLike = async (postId, userId) => {
-        console.log(postId, userId);
         const likePost = await this.LikeRepository.putLike(postId, userId);
         const increseLike = await this.PostsRepository.increseLike({ postId });
         return likePost, increseLike;
@@ -63,7 +62,6 @@ class PostsService {
 
     //좋아요 취소
     deleteLike = async (postId, uesrId) => {
-        console.log(postId);
         const unLikePost = await this.LikeRepository.deleteLike(postId);
 
         const decreseLike = await this.PostsRepository.decreseLike(postId);

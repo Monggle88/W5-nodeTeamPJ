@@ -1,11 +1,9 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 const UsersRepository = require('../repositories/users.repositories');
 const usersRepository = new UsersRepository();
 // 유저 인증에 실패하더라도 에러를 반환하지 않는다.
 module.exports = async (req, res, next) => {
     try {
-        console.log(12341234)
         const cookies = req.cookies[process.env.COOKIE_NAME];
         if (!cookies) {
             return res.status(403).send({
@@ -28,6 +26,7 @@ module.exports = async (req, res, next) => {
 
         next();
     } catch (error) {
+        console.log(error);
         res.locals.user = { userId: undefined };
         next();
     }

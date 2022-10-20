@@ -13,22 +13,23 @@ class PostsRepository extends Posts {
     };
 
     //게시글 생성
-    createPost = async ({ userId, title, content, like }) => {
+    createPost = async ({ userId, title, contents, like }) => {
         const newPost = await Posts.create({
             userId,
             title,
-            content,
+            contents,
             like,
         });
         return newPost;
     };
 
     //게시글 수정
-    putPost = async ({ postId, title, content }) => {
+    putPost = async ({ postId, title, contents }) => {
         const Post = await Posts.update(
-            { title, content },
+            { title, contents },
             { where: { postId } },
         );
+
         return Post;
     };
 

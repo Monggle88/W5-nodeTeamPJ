@@ -42,11 +42,11 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 type: DataTypes.STRING,
             },
-            content: {
+            contents: {
                 allowNull: false,
                 type: DataTypes.STRING,
             },
-            likes: {
+            like: {
                 defaultValue: 0,
                 type: DataTypes.INTEGER,
             },

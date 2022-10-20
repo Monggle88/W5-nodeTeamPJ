@@ -17,7 +17,6 @@ class CommentRepository {
 
     // 댓글 생성
     createComment = async (postId, userId, comment) => {
-        console.log(userId); // undefined가 뜬다.
         const existPost = await Posts.findByPk(postId);
 
         // if (!existPost) throw new error('없는 게시글입니다.');
@@ -62,7 +61,7 @@ class CommentRepository {
                 { commentId, userId, comment },
                 { where: { commentId } },
             );
-            console.log(updateComment);
+
             return { message: '댓글이 수정되었습니다.' };
         } catch (error) {
             console.error(error);
@@ -72,11 +71,13 @@ class CommentRepository {
 
     // 댓글 삭제
     deleteComment = async (commentId) => {
-        const deleteCommentData = await Comments.destroy({
+        await Comments.destroy({
             where: { commentId },
         });
+    };
 
-        return deleteCommentData;
+    findCommentByCommentId = async (commentId) => {
+        return await Comments.findAll({ where: { commentId } });
     };
 }
 

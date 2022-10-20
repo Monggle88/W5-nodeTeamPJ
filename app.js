@@ -1,8 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-Parser');
-require('dotenv').config();
 const routes = require('./routes/index.js');
 const {
     errorHandler,

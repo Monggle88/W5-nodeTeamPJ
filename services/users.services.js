@@ -67,9 +67,12 @@ class UsersService {
 
     // 토큰 발행
     tokenIssuance = (nickname) => {
-        const hashed = jwt.sign({ nickname }, process.env.JWT_SECRET_KET, {
+        const secretKey = process.env.JWT_SECRET_KET;
+        // const EXPIRES = process.env.JWT_EXPIRES;
+        const hashed = jwt.sign({ nickname }, secretKey, {
             expiresIn: process.env.JWT_EXPIRES,
         });
+
         return hashed;
     };
 

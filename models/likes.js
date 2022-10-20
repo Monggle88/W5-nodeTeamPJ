@@ -41,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
                 },
                 onDelete: 'cascade', // 부모로 가져온 값이 삭제된다면 해당 컬럼과 연동되어 삭제됨
             },
+            like: {
+                allowNull: false,
+                type: DataTypes.INTEGER,
+            },
             createdAt: {
                 defaultValue: DataTypes.NOW,
                 allowNull: false,

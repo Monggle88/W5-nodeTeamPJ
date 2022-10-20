@@ -23,6 +23,7 @@ class PostsController {
             const { title, contents } = req.body;
             const { user } = res.locals;
             const nickname = user.nickname;
+
             const like = 0;
             // if(!nickname||!title||!contents){
             //   throw new InvalidParamsError
@@ -106,24 +107,21 @@ class PostsController {
             const likeDetail = await this.postsService.getUserId({ userId });
             if (likeDetail) {
                 const likeUserId = likeDetail.userId;
+
                 const likepost = likeDetail.postId;
-                console.log('if 1');
-                if (likeUserId === String(userId) && likepost === postId) {
-                    console.log('이프');
+                if (likeUserId === userId && likepost === Number(postId)) {
                     const unLikePost = await this.postsService.deleteLike(
                         postId,
                     );
                     res.send('좋아요가 취소되었습니다.');
                 } else {
-                    console.log('엘스');
-                    const putLike = await this.postsService.putLike({
+                    const putLike = await this.postsService.putLike(
                         postId,
                         userId,
-                    });
+                    );
                     res.send('좋아요를 등록했습니다.');
                 }
             } else {
-                console.log('else2');
                 const putLike = await this.postsService.putLike(postId, userId);
                 res.send('좋아요를 등록했습니다.');
             }

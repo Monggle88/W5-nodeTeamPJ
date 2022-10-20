@@ -6,7 +6,6 @@ class CommentService {
     commentRepository = new CommentRepository();
 
     getComments = async (postId) => {
-        console.log(postId);
         const allComment = await this.commentRepository.getComments(postId);
 
         allComment.sort((a, b) => {
@@ -16,6 +15,7 @@ class CommentService {
         return allComment.map((comment) => {
             return {
                 postId: comment.postId,
+                commentId: comment.commentId,
                 userId: comment.userId,
                 comment: comment.comment,
             };
@@ -49,14 +49,13 @@ class CommentService {
     };
 
     deleteComment = async (commentId) => {
-        const findComment = await this.commentRepository.deleteComment(
+        const findComment = await this.commentRepository.findCommentByCommentId(
             commentId,
         );
-        if (!findComment) throw new Error('댓글 없음');
 
-        const deleteResult = await this.commentRepository.deleteComment();
+        if (findComment.length === 0) throw new Error('댓글 없음');
 
-        return deleteResult;
+        await this.commentRepository.deleteComment(commentId);
     };
 }
 
