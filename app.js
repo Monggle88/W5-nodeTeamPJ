@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-Parser');
+
 const routes = require('./routes/index.js');
 const {
     errorHandler,
@@ -13,8 +13,7 @@ const app = express();
 
 app.use(morgan('tiny'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.json());
 
