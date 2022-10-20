@@ -9,16 +9,15 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.belongsTo(models.Users, { foreignKey: 'userId' }); // Users에서 userId를 받아온다.
-
-            this.hasMany(models.Comments, {
-                as: 'Comments',
-                foreignKey: 'postId',
-            });
-            this.hasMany(models.Likes, {
-                as: 'Likes',
-                foreignKey: 'postId',
-            });
+            // this.belongsTo(models.Users, { foreignKey: 'userId' }); // Users에서 userId를 받아온다.
+            // this.hasMany(models.Comments, {
+            //     as: 'Comments',
+            //     foreignKey: 'postId',
+            // });
+            // this.hasMany(models.Likes, {
+            //     as: 'Likes',
+            //     foreignKey: 'postId',
+            // });
         }
     }
     Posts.init(
@@ -53,12 +52,12 @@ module.exports = (sequelize, DataTypes) => {
             },
             createdAt: {
                 defaultValue: DataTypes.NOW,
-                allowNull: false,
+                // allowNull: false,
                 type: DataTypes.DATE,
             },
             updatedAt: {
                 defaultValue: DataTypes.NOW,
-                allowNull: false,
+                // allowNull: false,
                 type: DataTypes.DATE,
             },
         },

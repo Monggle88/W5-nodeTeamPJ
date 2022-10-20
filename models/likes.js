@@ -9,9 +9,8 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-
-            this.belongsTo(models.Users, { foreignKey: 'userId' }); // Users에서 userId를 받아온다.
-            this.belongsTo(models.Posts, { foreignKey: 'postId' }); // Posts에서 postId를 받아온다.
+            // this.belongsTo(models.Users, { foreignKey: 'userId' }); // Users에서 userId를 받아온다.
+            // this.belongsTo(models.Posts, { foreignKey: 'postId' }); // Posts에서 postId를 받아온다.
         }
     }
     Likes.init(
