@@ -59,8 +59,8 @@ class CommentRepository {
             // if (existComment.userId !== userId) throw new Error('댓글 작성자만 댓글을 수정할 수 있습니다.');
             // ORM인 Sequelize에서 Comments 모델의 update 메소드를 사용해 데이터 수정 요청
             const updateComment = await Comments.update(
-                { commentId,userId, comment },
-                { where: {commentId} },
+                { commentId, userId, comment },
+                { where: { commentId } },
             );
             console.log(updateComment);
             return { message: '댓글이 수정되었습니다.' };

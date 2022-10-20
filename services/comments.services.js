@@ -49,7 +49,9 @@ class CommentService {
     };
 
     deleteComment = async (commentId) => {
-        const findComment = await this.commentRepository.deleteComment(commentId);
+        const findComment = await this.commentRepository.deleteComment(
+            commentId,
+        );
         if (!findComment) throw new Error('댓글 없음');
 
         const deleteResult = await this.commentRepository.deleteComment();

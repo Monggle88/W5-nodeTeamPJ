@@ -31,24 +31,24 @@ class CommentsController {
     };
 
     updateComment = async (req, res, next) => {
-      try{
-        const { commentId } = req.params;
-        const  {user}  = res.locals
-        console.log(user)
-        const userId = user.userId
-        console.log(userId)
-        const { comment } = req.body;
+        try {
+            const { commentId } = req.params;
+            const { user } = res.locals;
+            console.log(user);
+            const userId = user.userId;
+            console.log(userId);
+            const { comment } = req.body;
 
-        const updateComment = await this.commentService.updateComment(
-            commentId,
-            userId,
-            comment,
-        );
+            const updateComment = await this.commentService.updateComment(
+                commentId,
+                userId,
+                comment,
+            );
 
-        res.status(200).send(updateComment);
-      } catch(error) {
-        res.status(400).send({errorMessage: error.message});
-      }
+            res.status(200).send(updateComment);
+        } catch (error) {
+            res.status(400).send({ errorMessage: error.message });
+        }
     };
 
     deleteComment = async (req, res, next) => {
