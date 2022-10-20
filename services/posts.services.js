@@ -16,17 +16,16 @@ class PostsService {
   }
 
   //게시글 생성
-  createPost =async({nickname,title,contents,like})=>{
+  createPost =async({userId,title,content,like})=>{
     const newPost = await this.PostsRepository.createPost({
-      nickname,title,contents,like
+      userId,title,content,like
     })
     return newPost;
 }
 
   //게시글 수정
-  putPost = async({postId,title,contents})=>{
-    console.log(postId,title,contents)
-    const Posts = await this.PostsRepository.putPost({title,contents,postId}) 
+  putPost = async({postId,title,content})=>{
+    const Posts = await this.PostsRepository.putPost({title,content,postId}) 
     return Posts
   }
 

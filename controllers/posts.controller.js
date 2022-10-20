@@ -20,15 +20,16 @@ class PostsController {
   //게시글 생성
   createPost = async(req,res,next)=>{
     try{
-      const {title,contents} = req.body;
+      const {title,content} = req.body;
       const {user} = res.locals;
-      const nickname = user.nickname
+      const userId = user.userId
       const like = 0;
-      if(!nickname||!title||!contents){
+      console.log(title,userId,content)
+      if(!userId||!title||!content){
         throw new InvalidParamsError
       }
 
-      const Posts = await this.postsService.createPost({nickname,title,contents,like})
+      const Posts = await this.postsService.createPost({userId,title,content,like})
 
       res.json({result:Posts})
     }catch(error){
@@ -40,13 +41,13 @@ class PostsController {
   putPost = async(req,res,next)=>{
     try{
       const {postId} = req.params;
-      const {title,contents} = req.body;
+      const {title,content} = req.body;
       const {user} = res.locals;
       const nickname = user.nickname
-      if(!title||!contents||!nickname){
+      if(!title||!content||!nickname){
         throw new InvalidParamsError
       }
-    const Posts = await this.postsService.putPost({title,contents,postId}) 
+    const Posts = await this.postsService.putPost({title,content,postId}) 
     res.send("수정이 완료되었습니다.")
   }catch(error){
     next(error)
