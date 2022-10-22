@@ -12,14 +12,14 @@ class UsersService {
     // 회원 가입
     createUser = async ({ nickname, password }) => {
         // nickname 중복 확인
-        const isExistUser = await this.usersRepository.findUser(nickname);
+        const isExistUser = await this.usersRepository.findUserByNickname(
+            nickname,
+        );
 
-        if (isExistUser) {
-            if (isExistUser.nickname === nickname) {
-                throw new ValidationError(
-                    '동일한 Nickname을 가진 User가 이미 존재합니다.',
-                );
-            }
+        if (isExistUser !== null) {
+            throw new ValidationError(
+                '동일한 Nickname을 가진 User가 이미 존재합니다.',
+            );
         }
 
         // 비밀번호 암호화
@@ -36,7 +36,7 @@ class UsersService {
     // 로그인
     login = async ({ nickname, password }) => {
         // nickname으로 user찾기
-        const user = await this.usersRepository.findUser(nickname);
+        const user = await this.usersRepository.findUserByNickname(nickname);
 
         // 가입된 유저인지 확인
         if (!user) {
@@ -67,9 +67,12 @@ class UsersService {
 
     // 토큰 발행
     tokenIssuance = (nickname) => {
-        const hashed = jwt.sign({ nickname }, process.env.JWT_SECRET_KET, {
+        const secretKey = process.env.JWT_SECRET_KET;
+        // const EXPIRES = process.env.JWT_EXPIRES;
+        const hashed = jwt.sign({ nickname }, secretKey, {
             expiresIn: process.env.JWT_EXPIRES,
         });
+
         return hashed;
     };
 

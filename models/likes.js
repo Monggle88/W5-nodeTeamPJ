@@ -9,9 +9,8 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-
-            this.belongsTo(models.Users, { foreignKey: 'userId' }); // Users에서 userId를 받아온다.
-            this.belongsTo(models.Posts, { foreignKey: 'postId' }); // Posts에서 postId를 받아온다.
+            // this.belongsTo(models.Users, { foreignKey: 'userId' }); // Users에서 userId를 받아온다.
+            // this.belongsTo(models.Posts, { foreignKey: 'postId' }); // Posts에서 postId를 받아온다.
         }
     }
     Likes.init(
@@ -41,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
                     key: 'userId', // 참조할 키
                 },
                 onDelete: 'cascade', // 부모로 가져온 값이 삭제된다면 해당 컬럼과 연동되어 삭제됨
+            },
+            like: {
+                allowNull: false,
+                type: DataTypes.INTEGER,
             },
             createdAt: {
                 defaultValue: DataTypes.NOW,

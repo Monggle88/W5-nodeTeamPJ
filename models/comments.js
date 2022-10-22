@@ -21,8 +21,10 @@ module.exports = (sequelize, DataTypes) => {
                 autoIncrement: true,
                 primaryKey: true,
                 type: DataTypes.INTEGER,
+                onDelete: 'cascade', // 부모로 가져온 값이 삭제된다면 해당 컬럼과 연동되어 삭제됨
             },
             postId: {
+                defaultValue: 1,
                 allowNull: false,
                 type: DataTypes.INTEGER,
                 references: {
@@ -34,15 +36,16 @@ module.exports = (sequelize, DataTypes) => {
             },
             userId: {
                 allowNull: false,
+                defaultValue: 1,
                 type: DataTypes.INTEGER,
                 references: {
                     // 참조 값
-                    model: 'Users', // 참조할 테이블
+                    model: 'Posts', // 참조할 테이블
                     key: 'userId', // 참조할 키
                 },
                 onDelete: 'cascade', // 부모로 가져온 값이 삭제된다면 해당 컬럼과 연동되어 삭제됨
             },
-            content: {
+            comment: {
                 allowNull: false,
                 type: DataTypes.STRING,
             },

@@ -8,6 +8,7 @@ module.exports = {
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER,
+                onDelete: 'cascade', // 부모로 가져온 값이 삭제된다면 해당 컬럼과 연동되어 삭제됨
             },
             postId: {
                 allowNull: false,
@@ -21,6 +22,7 @@ module.exports = {
             },
             userId: {
                 allowNull: false,
+                defaultValue: 0,
                 type: Sequelize.INTEGER,
                 references: {
                     // 참조 값
@@ -29,7 +31,7 @@ module.exports = {
                 },
                 onDelete: 'cascade', // 부모로 가져온 값이 삭제된다면 해당 컬럼과 연동되어 삭제됨
             },
-            content: {
+            comment: {
                 allowNull: false,
                 type: Sequelize.STRING,
             },

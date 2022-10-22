@@ -9,20 +9,19 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-
             // foreignKey 설정
-            this.hasMany(models.Posts, {
-                as: 'Posts',
-                foreignKey: 'userId',
-            });
-            this.hasMany(models.Comments, {
-                as: 'Comments',
-                foreignKey: 'userId',
-            });
-            this.hasMany(models.Likes, {
-                as: 'Likes',
-                foreignKey: 'userId',
-            });
+            // this.hasMany(models.Posts, {
+            //     as: 'Posts',
+            //     foreignKey: 'userId',
+            // });
+            // this.hasMany(models.Comments, {
+            //     as: 'Comments',
+            //     foreignKey: 'userId',
+            // });
+            // this.hasMany(models.Likes, {
+            //     as: 'Likes',
+            //     foreignKey: 'userId',
+            // });
         }
     }
     Users.init(

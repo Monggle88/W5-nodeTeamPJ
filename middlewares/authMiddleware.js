@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 const UsersRepository = require('../repositories/users.repositories');
-const usersRepository= new UsersRepository
+const usersRepository = new UsersRepository();
 // 유저 인증에 실패하더라도 에러를 반환하지 않는다.
 module.exports = async (req, res, next) => {
     try {
@@ -20,11 +19,14 @@ module.exports = async (req, res, next) => {
         }
 
         const { nickname } = jwt.verify(tokenValue, process.env.JWT_SECRET_KET);
-        const user = await usersRepository.findUser(nickname);
+
+        const user = await usersRepository.findUserByNickname(nickname);
+
         res.locals.user = user;
 
         next();
     } catch (error) {
+        console.log(error);
         res.locals.user = { userId: undefined };
         next();
     }
